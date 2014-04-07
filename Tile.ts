@@ -32,5 +32,13 @@ function TileSizeToString(ts) {
       return "1x1";
     case TileSize.Medium:
       return "2x2";
+    case TileSize.Wide:
+      return "4x2";
+    case TileSize.Large:
+      return "4x4";
+    case TileSize.Hero:
+      return "6x4";
+    case TileSize.TallHero:
+      return "4x6";
   }
 }

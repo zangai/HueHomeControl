@@ -5,21 +5,69 @@
       <meta charset="utf-8" />
       <title>Hue Home Control</title>
       <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.js"></script>
+      <script type="text/javascript" src="jquery.mousewheel.js"></script>
+      
       <script type="text/javascript" src="dashboard.js"></script>
       <script type="text/javascript" src="tile.js"></script>
       <script type="text/javascript">
-        $(document).ready(function() {
+        var prevMove;
+        var dragging = false;
+        $(document).ready(function () {
+
+
           var dash = new Dashboard($("section.dashboard"));
+          console.log("window", $(window).outerWidth(true));
+
+          $('html').bind('mousewheel', function (event) {
+            doSomeAwesomeScrolling(event.deltaY, event.deltaFactor);
+          });
+          $('html').bind('mousemove', function (event) {
+            if (dragging) {
+              if (prevMove) {
+                deltaX = (prevMove.screenX - event.screenX);
+                doSomeAwesomeScrolling(deltaX, 3);
+              }
+              prevMove = event;
+            }
+          });
+          $('html').bind('mousedown', function (event) {
+            prevMove = null;
+            dragging = true;
+          });
+          $('html').bind('mouseup', function (event) {
+            dragging = false;
+          });
+
+
+
         });
+
+        function doSomeAwesomeScrolling(deltaY, deltaFactor) {
+          var pixExtract = new RegExp(/(\-?\d*)px/);
+
+          var ml = parseInt(pixExtract.exec($('body').css("margin-left"))[1]);
+          var f = ((-deltaY) * (deltaFactor / 5));
+          var nml = ml + f;
+
+          if (nml < 0 && (nml > ($(window).outerWidth(true) - $("body").outerWidth()))) {
+            // Dont go past the end of the content
+            $('body').css("margin-left", Math.floor(nml));
+          } else if (nml > 0) {
+            $('body').css("margin-left", 0);
+          }
+        }
       </script>
       <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
       <section class="dashboard" id="dashboard">
-        <h1>Dashboard</h1>
+        <header>Dashboard</header>
         <section class='tiles'>
 
         </section>
-      </section>      
+      </section>
+      <section id="blades">
+
+      </section> 
     </body>
 </html>
