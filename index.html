@@ -2,12 +2,24 @@
 
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
-        <title></title>
+      <meta charset="utf-8" />
+      <title>Hue Home Control</title>
+      <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.js"></script>
+      <script type="text/javascript" src="dashboard.js"></script>
+      <script type="text/javascript" src="tile.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function() {
+          var dash = new Dashboard($("section.dashboard"));
+        });
+      </script>
+      <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
       <section class="dashboard" id="dashboard">
         <h1>Dashboard</h1>
+        <section class='tiles'>
+
+        </section>
       </section>      
     </body>
 </html>
