@@ -37,6 +37,10 @@
           $('html').bind('mouseup', function (event) {
             dragging = false;
           });
+          $(window).bind('resize', function (event) {
+            // Set Height
+            $("body").css("height", $(window).height() + "px");
+          });
 
 
 
@@ -53,7 +57,7 @@
             // Dont go past the end of the content
             $('body').css("margin-left", Math.floor(nml));
           } else if (nml > 0) {
-            $('body').css("margin-left", 0);
+            $('body').css("margin-left", 12);
           }
         }
       </script>
@@ -68,6 +72,7 @@
       </section>
       <section id="blades">
 
-      </section> 
+      </section>
+      <footer>BladeDash 1.0 by <a href='mailto:p.decoster@dev7.nl'>Patrick Decoster</a></footer>
     </body>
 </html>

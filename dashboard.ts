@@ -9,7 +9,7 @@ class Dashboard {
 
   }
   public load() {
-    $(this.baseDOM).find("header").html("Dashboard Booted");
+    $(this.baseDOM).find("header").html("Start");
     
     // Set Height
     $("body").css("height", $(window).height() + "px");
@@ -17,40 +17,35 @@ class Dashboard {
 
     var tileContainer = $(this.baseDOM).find("section.tiles");
     $(tileContainer).delegate("div.tile", "click", tileClicked);
-    for (var i = 1; i <= 8; i++) {
-      var t = new Tile(TileSize.Small, "Small "+i);
-      var e = t.gen();
-      
-      tileContainer.append(e);
-      if (i == 2) {
-        
-      }
-    }
-    var t = new Tile(TileSize.Hero, "Hero");
-        var e = t.gen();
-      
-        tileContainer.append(e);
-    for (var i = 1; i <= 2; i++) {
-      var t = new Tile(TileSize.Medium, "Medium "+i);
-      var e = t.gen();
-      tileContainer.append(e);
-    }
-    var t = new Tile(TileSize.Large, "Large 1");
+
+    var t = new Tile(TileSize.Medium, "RFID");
+    t.icon = "nfccard.svg";
     var e = t.gen();
     tileContainer.append(e);
-    for (var i = 1; i <= 1; i++) {
-      var t = new Tile(TileSize.Wide, "Wide "+i);
-      var e = t.gen();
-      tileContainer.append(e);
-    }
+
+    var t = new Tile(TileSize.Medium, "PIR Sensor");
+    t.icon = "motion.svg";
+    var e = t.gen();
+    tileContainer.append(e);
+
+    var t = new Tile(TileSize.Wide, "Hue");
+    t.icon = "lightbulb.svg";
+    var e = t.gen();
+    tileContainer.append(e);
     
+    var t = new Tile(TileSize.Small, "");
+    t.icon = "settings.svg";
+    var e = t.gen();
+    tileContainer.append(e);
+    
+
   }
 }
 
 function tileClicked() {
   var blades = $("section#blades");
   var b = new $("<section class='blade'/>");
-  var h = new $("<h1/>");
+  var h = new $("<header/>");
   h.text("A blade");
   b.append(h);
   blades.append(b);

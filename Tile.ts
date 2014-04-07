@@ -12,6 +12,8 @@ enum TileSize {
 
 
 class Tile {
+
+  public icon : String;
  
   constructor(private _size : TileSize, private _name : String) {
 
@@ -20,6 +22,12 @@ class Tile {
     var e = new $("<div></div>");
     e.addClass("tile");
     e.addClass("size"+TileSizeToString(this._size));
+    if (this.icon) {
+      var  i = new $('<object type="image/svg+xml"></object>');
+      i.attr("data", "assets/" + this.icon);
+      e.append(i);
+    }
+
     var s = new $("<div class='label'>"+this._name+"</div>");
     e.append(s);
     return e[0];

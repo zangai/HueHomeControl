@@ -4,12 +4,18 @@ html {
   -ms-touch-action: none;
 }
 
+a {
+  color: white;
+  text-decoration: none;
+}
+
 body {
   font-family: "Segoe UI";
   font-weight: lighter;
   margin: 0;
   overflow-x: hidden;
   overflow-y: hidden;
+  margin-left: 12px;
   width: 600px;
   background-image: url("back.jpg");
   background-size: cover;
@@ -17,13 +23,13 @@ body {
 }
 
 section {
-  padding: 4px;
   &.dashboard {
     float: left;
     height: inherit;
     header {
-      
+      margin-left: 8px;
     }
+    padding: 4px;
   }
 
   &#blades {
@@ -37,6 +43,11 @@ section {
       min-width: 300px;
       height: inherit;
       background-color: rgba(64,64,64,0.4);
+      header {
+        margin:0;
+        padding: 8px;
+        background-color: rgba(64,64,64,0.6);
+      }
     }
     
   }
@@ -51,8 +62,11 @@ section.tiles {
     &.size4x2 {  width: 224px; height: 108px; }
     &.size4x4 {  width: 224px; height: 224px; }
     &.size6x4 {  width: 340px; height: 224px; }
+    object {
+      width: inherit; height: inherit; pointer-events:none;
+    }
     float: left;
-    background-color: green;
+    background-color: orange;
     margin: 4px;
     position: relative;
     cursor: pointer;
@@ -64,4 +78,11 @@ section.tiles {
       font-size: 12px;
     }
   }
+}
+
+footer {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  background-color: rgba(64,64,64,0.6);
 }
