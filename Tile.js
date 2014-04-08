@@ -1,26 +1,37 @@
 var TileSize;
 (function (TileSize) {
     TileSize._map = [];
-    TileSize.Small = "1x1";
-    TileSize.Medium = "2x2";
-    TileSize.Wide = "4x2";
-    TileSize.Large = "4x4";
-    TileSize.Hero = "6x4";
-    TileSize.TallHero = "4x6";
+    TileSize._map[0] = "Small";
+    TileSize.Small = 0;
+    TileSize._map[1] = "Medium";
+    TileSize.Medium = 1;
+    TileSize._map[2] = "Wide";
+    TileSize.Wide = 2;
+    TileSize._map[3] = "Large";
+    TileSize.Large = 3;
+    TileSize._map[4] = "Hero";
+    TileSize.Hero = 4;
+    TileSize._map[5] = "TallHero";
+    TileSize.TallHero = 5;
 })(TileSize || (TileSize = {}));
+; ;
 var Tile = (function () {
     function Tile(_size, _name) {
         this._size = _size;
         this._name = _name;
     }
-    Tile.prototype.gen = function () {
-        var e = new $("<div></div>");
-        e.addClass("tile");
-        e.addClass("size" + TileSizeToString(this._size));
+    Tile.prototype.gen = function (tileID) {
+        var e = $("<div></div>");
+        $(e).addClass("tile");
+        $(e).attr("data-tileID", tileID);
+        $(e).addClass("size" + TileSizeToString(this._size));
         if(this.icon) {
             var i = new $('<object type="image/svg+xml"></object>');
             i.attr("data", "assets/" + this.icon);
             e.append(i);
+        }
+        if(this.uri) {
+            e.attr("data-uri", this.uri);
         }
         var s = new $("<div class='label'>" + this._name + "</div>");
         e.append(s);
@@ -54,5 +65,28 @@ function TileSizeToString(ts) {
             return "4x6";
 
         }
+    }
+}
+function tileClicked(event) {
+    var rtile = $(event.currentTarget).attr("data-tileid");
+    var tile = dashboard.tiles[(rtile - 1)];
+    var uri = tile.uri;
+    if(uri) {
+        var blades = $("section#blades");
+        var blade = new Blade(uri);
+        var e = blade.gen(dashboard.blades.push(blade));
+        blades.append(e);
+        e.load("blades" + uri + ".html");
+        recalcBodyWidth(e);
+        var oml = $(e).css("margin-left");
+        var o = 24;
+        $(e).css("opacity", "0");
+        $(e).css("margin-left", "+=" + o);
+        $(e).show();
+        $(e).animate({
+            "opacity": 1,
+            "margin-left": oml
+        }, 250, function () {
+        });
     }
 }

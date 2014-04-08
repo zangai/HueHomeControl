@@ -1,31 +1,35 @@
 // TypeScript
 
 enum TileSize {
-  Small = "1x1",    // 1x1
-  Medium = "2x2",   // 2x2
-  Wide = "4x2",     // 4x2
-  Large = "4x4",    // 4x4
-  Hero = "6x4",     // 6x4
-  TallHero = "4x6"  // 4x6
-}
-
-
+  Small,    // 1x1
+  Medium,   // 2x2
+  Wide,     // 4x2
+  Large,    // 4x4
+  Hero,     // 6x4
+  TallHero  // 4x6
+};
 
 class Tile {
 
   public icon : String;
+  public uri : String;
  
   constructor(private _size : TileSize, private _name : String) {
 
   }
-  public gen() : HTMLElement {
-    var e = new $("<div></div>");
-    e.addClass("tile");
-    e.addClass("size"+TileSizeToString(this._size));
+  public gen(tileID : Number) : HTMLElement {
+    var e = $("<div></div>");
+    $(e).addClass("tile");
+    $(e).attr("data-tileID", tileID);
+    $(e).addClass("size"+TileSizeToString(this._size));
     if (this.icon) {
       var  i = new $('<object type="image/svg+xml"></object>');
       i.attr("data", "assets/" + this.icon);
       e.append(i);
+    }
+
+    if (this.uri) {
+      e.attr("data-uri", this.uri);
     }
 
     var s = new $("<div class='label'>"+this._name+"</div>");
@@ -48,5 +52,34 @@ function TileSizeToString(ts) {
       return "6x4";
     case TileSize.TallHero:
       return "4x6";
+  }
+}
+
+function tileClicked(event) {
+  var rtile = $(event.currentTarget).attr("data-tileid");
+  var tile = dashboard.tiles[(rtile-1)];
+
+  var uri = tile.uri;
+  if (uri) {
+    var blades = $("section#blades");
+    var blade = new Blade(uri);
+    var e = blade.gen(dashboard.blades.push(blade));
+    
+    blades.append(e);
+    
+    e.load("blades"+uri+".html");
+
+    recalcBodyWidth(e);
+    var oml = $(e).css("margin-left");
+    var o = 24;
+    $(e).css("opacity", "0");
+    $(e).css("margin-left", "+="+o);
+    $(e).show();
+    $(e).animate({
+      "opacity": 1,
+      "margin-left": oml
+    }, 250, function() {
+    
+    });
   }
 }

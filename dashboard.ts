@@ -1,9 +1,16 @@
 /// <reference path="jquery.d.ts"/>
+/// <reference path="Tile.ts"/>
+/// <reference path="Blade.ts"/>
+
+
 
 class Dashboard {
   public baseDOM : HTMLElement;
+  public tiles: Array<Tile> = new Array<Tile>();
+  public blades: Array<Blade> = new Array<Blade>();
 
   constructor(dom) {
+    
     this.baseDOM = dom;
     this.load();
 
@@ -20,50 +27,30 @@ class Dashboard {
 
     var t = new Tile(TileSize.Medium, "RFID");
     t.icon = "nfccard.svg";
-    var e = t.gen();
+    t.uri = "/rfid";
+    var e = t.gen(this.tiles.push(t));
     tileContainer.append(e);
 
     var t = new Tile(TileSize.Medium, "PIR Sensor");
     t.icon = "motion.svg";
-    var e = t.gen();
+    t.uri = "/pir";
+    var e = t.gen(this.tiles.push(t));
     tileContainer.append(e);
 
     var t = new Tile(TileSize.Wide, "Hue");
     t.icon = "lightbulb.svg";
-    var e = t.gen();
+    t.uri = "/hue";
+    var e = t.gen(this.tiles.push(t));
     tileContainer.append(e);
     
     var t = new Tile(TileSize.Small, "");
     t.icon = "settings.svg";
-    var e = t.gen();
+    t.uri = "/options";
+    var e = t.gen(this.tiles.push(t));
     tileContainer.append(e);
     
 
   }
-}
-
-function tileClicked() {
-  var blades = $("section#blades");
-  var b = new $("<section class='blade'/>");
-  var h = new $("<header/>");
-  h.text("A blade");
-  b.append(h);
-  blades.append(b);
-  recalcBodyWidth(b);
-  var oml = $(b).css("margin-left");
-  var o = 24;
-  $(b).css("opacity", "0");
-  $(b).css("margin-left", "+="+o);
-  $(b).show();
-  $(b).animate({
-    "opacity": 1,
-    "margin-left": oml
-  }, 250, function() {
-    
-  });
-
-
-
 }
 
 function recalcBodyWidth(blade) {

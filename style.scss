@@ -17,7 +17,7 @@ body {
   overflow-y: hidden;
   margin-left: 12px;
   width: 600px;
-  background-image: url("back.jpg");
+  background-image: url("back2.jpg");
   background-size: cover;
   color: white;
 }
@@ -47,6 +47,19 @@ section {
         margin:0;
         padding: 8px;
         background-color: rgba(64,64,64,0.6);
+        div.actions {
+          float: right;
+        }
+      }
+      aside {
+        margin: 4px;
+        input {
+          width: 100%;
+          background-color: rgba(64,64,64,0.6);
+          border: none;
+          color: white;
+          font-family: "Segoe WP light";
+        }
       }
     }
     
@@ -66,7 +79,7 @@ section.tiles {
       width: inherit; height: inherit; pointer-events:none;
     }
     float: left;
-    background-color: orange;
+    background-color: #444;
     margin: 4px;
     position: relative;
     cursor: pointer;
@@ -82,7 +95,8 @@ section.tiles {
 
 footer {
   position: absolute;
-  bottom: 4px;
-  left: 4px;
+  bottom: 12px;
+  left: 20px;
+  padding: 4px;
   background-color: rgba(64,64,64,0.6);
 }

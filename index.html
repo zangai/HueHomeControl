@@ -9,13 +9,16 @@
       
       <script type="text/javascript" src="dashboard.js"></script>
       <script type="text/javascript" src="tile.js"></script>
+      <script type="text/javascript" src="blade.js"></script>
+
       <script type="text/javascript">
         var prevMove;
+        var dashboard;
         var dragging = false;
         $(document).ready(function () {
 
 
-          var dash = new Dashboard($("section.dashboard"));
+          dashboard = new Dashboard($("section.dashboard"));
           console.log("window", $(window).outerWidth(true));
 
           $('html').bind('mousewheel', function (event) {
