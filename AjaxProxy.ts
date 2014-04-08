@@ -3,7 +3,7 @@
 class AjaxProxy {
   
   constructor(private _url) { }
-  public execute(type : String = "GET", data : String, append : String = "") : String {
+  public execute(type : String, data : String, append : String = "") : String {
     $.ajax(
       {
       type: "POST",

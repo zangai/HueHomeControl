@@ -2,7 +2,7 @@ var AjaxProxy = (function () {
     function AjaxProxy(_url) {
         this._url = _url;
     }
-    AjaxProxy.prototype.execute = function (data, append) {
+    AjaxProxy.prototype.execute = function (type, data, append) {
         if (typeof append === "undefined") { append = ""; }
         $.ajax({
             type: "POST",
@@ -10,7 +10,7 @@ var AjaxProxy = (function () {
             data: {
                 uri: this._url + append,
                 data: data,
-                method: this._type,
+                method: type,
                 success: function (data) {
                     return data;
                 }
