@@ -68,6 +68,11 @@ function TileSizeToString(ts) {
     }
 }
 function tileClicked(event) {
+    $(event.currentTarget).transition({
+        scale: 1.05
+    }).transition({
+        scale: 1.0
+    });
     var rtile = $(event.currentTarget).attr("data-tileid");
     var tile = dashboard.tiles[(rtile - 1)];
     var uri = tile.uri;
