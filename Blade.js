@@ -1,3 +1,4 @@
+// TypeScript
 var Blade = (function () {
     function Blade(uri) {
         this.uri = uri;
