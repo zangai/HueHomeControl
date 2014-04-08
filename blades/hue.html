@@ -3,11 +3,10 @@
   allLights.execute("GET", "", "", function(data) {
     
     ls = eval(data);
-    ls.map(
-			(l: any) => {
-				console.log(l);
-			}
-		);
+    for(int i = 0; i < ls.length; i++) {
+      console.log(ls[i]);
+    }
+
   });
 
   var lights = new AjaxProxy("http://hue.avansti.nl/api/newdeveloper/lights");
