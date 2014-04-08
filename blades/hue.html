@@ -1,16 +1,36 @@
 <script type="text/javascript">
   var lights = new AjaxProxy("PUT", "http://hue.avansti.nl/api/newdeveloper/lights");
-  $("button#lightoff").bind("click", function () {
-    lights.execute('{ "on": false }',"/5/state");
+  $("button#lightoff").bind("click", function (event) {
+    var lightID = $(event.currentTarget).attr("data-lightID");
+    lights.execute('{ "on": false }', "/"+lightID+"/state");
   });
-  $("button#lighton").bind("click", function () {
-    lights.execute('{ "on": true }',"/5/state");
+  $("button#lighton").bind("click", function (event) {
+    var lightID = $(event.currentTarget).attr("data-lightID");
+    lights.execute('{ "on": true }', "/"+lightID+"/state");
   });
 </script>
 <header>
 	Direct HUE Control
 </header>
 <aside>
-	<button id="lightoff">UIT</button>
-	<button id="lighton">AAN</button>
+  <div>
+	  <button id="lightoff" data-lightID="1">UIT</button>
+	  <button id="lighton"  data-lightID="1">AAN</button>
+  </div>
+  <div>
+	  <button id="lightoff" data-lightID="2">UIT</button>
+	  <button id="lighton"  data-lightID="2">AAN</button>
+	</div>
+  <div>
+    <button id="lightoff" data-lightID="3">UIT</button>
+	  <button id="lighton"  data-lightID="3">AAN</button>
+	</div>
+  <div>
+    <button id="lightoff" data-lightID="4">UIT</button>
+	  <button id="lighton"  data-lightID="4">AAN</button>
+	</div>
+  <div>
+    <button id="lightoff" data-lightID="5">UIT</button>
+	  <button id="lighton"  data-lightID="5">AAN</button>
+  </div>
 </aside>
