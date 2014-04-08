@@ -1,9 +1,14 @@
 <script type="text/javascript">
   var allLights = new AjaxProxy("http://hue.avansti.nl/api/newdeveloper/lights");
   allLights.execute("GET", "", "", function(data) {
-    console.log(data);  
+    
+    ls = eval(data);
+    ls.map(
+			(l: any) => {
+				console.log(l);
+			}
+		);
   });
-
 
   var lights = new AjaxProxy("http://hue.avansti.nl/api/newdeveloper/lights");
   $("button#lightoff").bind("click", function (event) {
