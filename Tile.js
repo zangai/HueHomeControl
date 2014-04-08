@@ -26,7 +26,7 @@ var Tile = (function () {
         $(e).attr("data-tileID", tileID);
         $(e).addClass("size" + TileSizeToString(this._size));
         if(this.icon) {
-            var i = new $('<object type="image/svg+xml"></object>');
+            var i = $('<object type="image/svg+xml"></object>');
             i.attr("data", "assets/" + this.icon);
             e.append(i);
         }

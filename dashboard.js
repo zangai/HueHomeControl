@@ -29,15 +29,15 @@ var Dashboard = (function () {
         var e = t.gen(this.tiles.push(t));
         tileContainer.append(e);
 
-        var t = new Tile(2 /* Wide */, "Hue");
-        t.icon = "lightbulb.svg";
-        t.uri = "/hue";
+        var t = new Tile(1 /* Medium */, "");
+        t.icon = "settings.svg";
+        t.uri = "/options";
         var e = t.gen(this.tiles.push(t));
         tileContainer.append(e);
 
-        var t = new Tile(0 /* Small */, "");
-        t.icon = "settings.svg";
-        t.uri = "/options";
+        var t = new Tile(4 /* Hero */, "Hue");
+        t.icon = "lightbulb.svg";
+        t.uri = "/hue";
         var e = t.gen(this.tiles.push(t));
         tileContainer.append(e);
     };

@@ -36,16 +36,16 @@ class Dashboard {
     t.uri = "/pir";
     var e = t.gen(this.tiles.push(t));
     tileContainer.append(e);
-
-    var t = new Tile(TileSize.Wide, "Hue");
-    t.icon = "lightbulb.svg";
-    t.uri = "/hue";
+    
+    var t = new Tile(TileSize.Medium, "");
+    t.icon = "settings.svg";
+    t.uri = "/options";
     var e = t.gen(this.tiles.push(t));
     tileContainer.append(e);
     
-    var t = new Tile(TileSize.Small, "");
-    t.icon = "settings.svg";
-    t.uri = "/options";
+    var t = new Tile(TileSize.Hero, "Hue");
+    t.icon = "lightbulb.svg";
+    t.uri = "/hue";
     var e = t.gen(this.tiles.push(t));
     tileContainer.append(e);
     
