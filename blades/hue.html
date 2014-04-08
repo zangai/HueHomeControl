@@ -1,28 +1,11 @@
 <script type="text/javascript">
-$("button#lightoff").bind("click", function() {
-  $.ajax(
-    {
-    type: "POST",
-    url: "ajax.php",
-    data: {
-      uri: "http://hue.avansti.nl/api/newdeveloper/lights/5/state",
-      data: '{ "on": false }',
-      method: "PUT"
-    }
+  var lights = new AjaxProxy("PUT", "http://hue.avansti.nl/api/newdeveloper/lights/5/state");
+  $("button#lightoff").bind("click", function () {
+    lights.execute('{ "on": false }');
   });
-});
-$("button#lighton").bind("click", function() {
-  $.ajax(
-    {
-    type: "POST",
-    url: "ajax.php",
-    data: {
-      uri: "http://hue.avansti.nl/api/newdeveloper/lights/5/state",
-      data: '{ "on": true }',
-      method: "PUT"
-    }
+  $("button#lighton").bind("click", function () {
+    lights.execute('{ "on": true }');
   });
-});
 </script>
 <header>
 	Direct HUE Control
