@@ -66,6 +66,12 @@ function tileClicked(event) {
     var blades = $("section#blades");
     var blade = new Blade(uri);
     var e = blade.gen(dashboard.blades.push(blade));
+
+    if (oldblade = $(blades).find("section.blade")) {
+      var bladeID = oldblade.attr("data-bladeID");
+      delete(dashboard.blades[bladeID]);
+      oldblade.remove();
+    }
     
     blades.append(e);
     
