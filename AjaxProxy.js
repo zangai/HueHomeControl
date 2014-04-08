@@ -11,7 +11,10 @@ var AjaxProxy = (function () {
             data: {
                 uri: this._url + append,
                 data: data,
-                method: this._type
+                method: this._type,
+                success: function (data) {
+                    return data;
+                }
             }
         });
         return "";
