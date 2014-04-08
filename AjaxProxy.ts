@@ -2,8 +2,8 @@
 // TypeScript
 class AjaxProxy {
   
-  constructor(private _type, private _url) { }
-  public execute(data : String, append : String = "") : String {
+  constructor(private _url) { }
+  public execute(type : String = "GET", data : String, append : String = "") : String {
     $.ajax(
       {
       type: "POST",
@@ -11,7 +11,7 @@ class AjaxProxy {
       data: {
         uri: this._url + append,
         data: data,
-        method: this._type,
+        method: type,
         success: function(data) {
           return data;
         }

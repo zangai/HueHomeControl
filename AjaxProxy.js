@@ -1,6 +1,5 @@
 var AjaxProxy = (function () {
-    function AjaxProxy(_type, _url) {
-        this._type = _type;
+    function AjaxProxy(_url) {
         this._url = _url;
     }
     AjaxProxy.prototype.execute = function (data, append) {
