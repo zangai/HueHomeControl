@@ -2,8 +2,9 @@ var AjaxProxy = (function () {
     function AjaxProxy(_url) {
         this._url = _url;
     }
-    AjaxProxy.prototype.execute = function (type, data, append) {
+    AjaxProxy.prototype.execute = function (type, data, append, callback) {
         if (typeof append === "undefined") { append = ""; }
+        if (typeof callback === "undefined") { callback = null; }
         $.ajax({
             type: "POST",
             url: "/ajax.php",
@@ -13,10 +14,11 @@ var AjaxProxy = (function () {
                 method: type
             },
             success: function (data) {
-                return data;
+                if(callback) {
+                    callback(data);
+                }
             }
         });
-        return "";
     };
     return AjaxProxy;
 })();

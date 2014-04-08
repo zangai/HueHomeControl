@@ -3,7 +3,8 @@
 class AjaxProxy {
   
   constructor(private _url) { }
-  public execute(type : String, data : String, append : String = "") : String {
+  public execute(type : String, data : String, append : String = "", callback : () => void = null)
+  {
     $.ajax(
       {
       type: "POST",
@@ -14,9 +15,10 @@ class AjaxProxy {
         method: type        
       },
       success: function(data) {
-        return data;
+        if (callback) {
+          callback(data);
+        }
       }
     });
-    return "";
   }
 }

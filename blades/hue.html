@@ -1,12 +1,18 @@
 <script type="text/javascript">
+  var allLights = new AjaxProxy("http://hue.avansti.nl/api/newdeveloper/lights");
+  allLights.execute("GET", "", "", function(data) {
+    console.log(data);  
+  });
+
+
   var lights = new AjaxProxy("http://hue.avansti.nl/api/newdeveloper/lights");
   $("button#lightoff").bind("click", function (event) {
     var lightID = $(event.currentTarget).attr("data-lightID");
-    lights.execute("PUT", '{ "on": false }', "/"+lightID+"/state");
+    lights.execute("PUT", '{ "on": false }', "/" + lightID + "/state");
   });
   $("button#lighton").bind("click", function (event) {
     var lightID = $(event.currentTarget).attr("data-lightID");
-    lights.execute("PUT", '{ "on": true }', "/"+lightID+"/state");
+    lights.execute("PUT", '{ "on": true }', "/" + lightID + "/state");
   });
 </script>
 <header>
