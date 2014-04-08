@@ -1,10 +1,10 @@
 <script type="text/javascript">
-  var lights = new AjaxProxy("PUT", "http://hue.avansti.nl/api/newdeveloper/lights/5/state");
+  var lights = new AjaxProxy("PUT", "http://hue.avansti.nl/api/newdeveloper/lights");
   $("button#lightoff").bind("click", function () {
-    lights.execute('{ "on": false }');
+    lights.execute('{ "on": false }',"/5/state");
   });
   $("button#lighton").bind("click", function () {
-    lights.execute('{ "on": true }');
+    lights.execute('{ "on": true }',"/5/state");
   });
 </script>
 <header>
