@@ -1,16 +1,15 @@
 var AjaxProxy = (function () {
-    function AjaxProxy(_type, _url, _data) {
+    function AjaxProxy(_type, _url) {
         this._type = _type;
         this._url = _url;
-        this._data = _data;
     }
-    AjaxProxy.prototype.execute = function () {
+    AjaxProxy.prototype.execute = function (data) {
         $.ajax({
             type: "POST",
             url: "/ajax.php",
             data: {
                 uri: this._url,
-                data: this._data,
+                data: data,
                 method: this._type
             }
         });

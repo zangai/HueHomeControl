@@ -2,15 +2,15 @@
 // TypeScript
 class AjaxProxy {
   
-  constructor(private _type, private _url, private _data) { }
-  public execute() : String {
+  constructor(private _type, private _url) { }
+  public execute(data : String) : String {
     $.ajax(
       {
       type: "POST",
       url: "/ajax.php",
       data: {
         uri: this._url,
-        data: this._data,
+        data: data,
         method: this._type
       }
     });
